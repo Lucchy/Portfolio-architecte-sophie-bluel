@@ -48,18 +48,20 @@ table {
 }
 /** end reset css**/
 body {
-	max-width: 1140px;
-	margin:auto;
-	font-family: 'Work Sans' ;
+	/* max-width: 1140px; */
+	/* margin: auto; */
+	/* padding: 0 100px; */
+	font-family: 'Work Sans';
 	font-size: 14px;
 }
 header {
 	display: flex;
 	justify-content: space-between;
-	margin: 50px 0
+	margin: 50px 0;
 }
+
 section {
-	margin: 50px 0
+	margin: 50px 0;
 }
 
 h1{
@@ -79,7 +81,7 @@ h1 > span {
 	margin-top: 4px;
 }
 
-h2{
+h2 {
 	font-family: 'Syne';
 	font-weight: 700;
 	font-size: 30px;
@@ -99,12 +101,209 @@ nav li {
 li:hover {
 	color: #B1663C;
 }
+
+.modale_container {
+	display: none;
+	position: fixed;
+	top: 0;
+	width: 100vw;
+	height: 100vh;
+	z-index: 2;
+}
+
+.overlay {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.3);
+}
+
+.bande_noire {
+	position: relative;
+	top: 0;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	width: 100%;
+	background-color: black;
+}
+
+.modale {
+	width: 450px;
+	padding: 60px 100px 48px 100px;
+	background: #ffff;
+	border-radius: 10px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	display: flex;
+	flex-direction: column;
+	display: block;
+}
+
+.close_btn {
+	position: absolute;
+	right: 30px;
+	top: 30px;
+	border: none;
+	background-color: white;
+	cursor: pointer;
+}
+
+.back_btn {
+	position: absolute;
+	left: 30px;
+	top: 30px;
+	background-color: white;
+	cursor: pointer;
+	border: none;
+}
+
+.modale h3 {
+	font-weight: 400;
+	font-size: 26px;
+	display: flex;
+	justify-content: center;
+	font-family: 'Work Sans';
+	margin-bottom: 40px;
+}
+
+.modale_gallery {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+	grid-column-gap: 7px;
+	grid-row-gap: 5px;
+	margin-bottom: 45px;
+	/* display: flex;
+	flex-wrap: wrap; */
+}
+
+.modale_gallery div {
+	position: relative;
+}
+
+.modale_gallery div img {
+	background-position: center;
+	object-fit: cover;
+	height: 100px;
+	margin-right: 5px;
+	margin-bottom: 0px;
+}
+
+.modale_gallery div .trash {
+	position: absolute;
+	top: 0px;
+	right: 8px;
+	padding: 20px 0px;
+	transform: scale(0.6);
+	background-color: rgba(0, 0, 0, 0.8);
+	border-radius: 5px;
+	cursor: pointer;
+	
+}
+
+.modale .modale_gallery a {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+	width: 50%;
+	margin-bottom: 9px;
+}
+
+.grey_line {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	height: 0px;
+	border: solid;
+	border-width: 1px;
+	border-top: none;
+	border-color: grey;
+}
+
+.modale input {
+	display: flex;
+	justify-content: center;
+}
+
+.modale a {
+	display: flex;
+	justify-content: center;
+	color: red;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.modale input {
+	cursor: pointer;
+	padding: 7px 0px;
+}
+
+.modale_2 {
+	z-index: 3;
+	height: 80%;
+	width: 450px;
+	padding: 60px 100px 48px 100px;
+	background: #ffff;
+	border-radius: 10px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	display: flex;
+	flex-direction: column;
+	display: none;
+}
+
+.modale_2 h3 {
+	font-weight: 400;
+	font-size: 26px;
+	display: flex;
+	justify-content: center;
+	font-family: 'Work Sans';
+	margin-bottom: 40px;
+}
+
+.modale_2 form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center
+}
+
+.modale_2 form .photo_area {
+	background-color: #E8F1F7;
+	height: 169px;
+}
+.modale_2 form .photo_area i{
+	color: #B9C5CC;
+}
+.modale_2 form label {
+	margin-top: 30px;
+	margin-bottom: 10px;
+	font-weight: 700;
+}
+.modale_2 form .input_txt {
+	height: 50px;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+.modale_2 form select {
+	height: 50px;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+.modale_2 form .valid_btn {
+	padding: 10px 50px;
+}
+
+
 #introduction {
 	display: flex;
 	align-items: center;
 }
 #introduction figure {
-	flex: 1
+	flex: 1;
 }
 #introduction img {
 	display: block;
@@ -113,7 +312,7 @@ li:hover {
 }
 
 #introduction article {
-	flex: 1
+	flex: 1;
 }
 #introduction h2 {
 	margin-bottom: 1em;
@@ -125,12 +324,33 @@ li:hover {
 #portfolio h2 {
 	text-align: center;
 	margin-bottom: 1em;
+	margin-left: 45%;
+}
+
+#portfolio .titre {
+	position: relative;
+	display: flex;
+	align-items: center;
+	z-index: 1;
+}
+
+#portfolio .titre i {
+	margin-left: 30px;
+	position: relative;
+}
+
+#portfolio .titre .modale_btn {
+	color: black;
+	text-decoration: none;
+	background: none;
+	border: none;
+	cursor: pointer;
 }
 
 #categories {
 	display: flex;
 	justify-content: center;
-	margin:50px 0px;
+	margin: 40px 0px;
 }
 
 #categories button {
@@ -149,7 +369,7 @@ li:hover {
 
 #categories .actif {
 	color: white;
-	background-color: #1D6154;
+	background-color:#1D6154;
 }
 
 .gallery {
@@ -162,12 +382,13 @@ li:hover {
 
 .gallery img {
 	width: 100%;
-
 }
+
 #contact {
 	width: 50%;
 margin: auto;
 }
+
 #contact > * {
 	text-align: center;
 
@@ -175,6 +396,7 @@ margin: auto;
 #contact h2{
 	margin-bottom: 20px;
 }
+
 #contact form {
 	text-align: left;
 	margin-top:30px;

@@ -13,7 +13,7 @@ form.addEventListener('submit', async function(event) {
     const chargeUtile = JSON.stringify(identifiants);
 
     fetch("http://localhost:5678/api/users/login", {
-            method:"POST",
+            method: "POST",
             body : chargeUtile,
             headers: {
                 "Content-Type": "application/json",
@@ -41,19 +41,12 @@ form.addEventListener('submit', async function(event) {
             else if (res.status === 404) {
                 console.log('Erreur : utilisateur introuvable');
                 erreur.innerHTML = "*Utilisateur introuvable";
+                erreur.style.marginBottom = '40px';
             }
             }
        })
     
-    
-
-    
-    
-
    
-
-
-    
 })
 
     
