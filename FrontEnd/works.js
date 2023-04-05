@@ -97,7 +97,7 @@ tous.addEventListener ('click', function() {
 
 const modaleContainer = document.querySelector('.modale_container');
 const modaleBtn = document.querySelector('.modale_btn');
-const closeBtn = document.querySelector('.close_btn');
+const closeBtn = document.querySelectorAll('.close_btn');
 const overlay = document.querySelector('.overlay');
 const modale2 = document.querySelector('.modale_2');
 const addBtn = document.querySelector('.modale input');
@@ -107,13 +107,13 @@ modaleBtn.addEventListener('click', function modale() {
     console.log('modale');
     modaleContainer.style.display = 'block';
 });
-
-closeBtn.addEventListener('click', function (){
-    console.log('close button');
-    modaleContainer.style.display = 'none';
-    modale2.style.display = 'none';
-});
-
+for (let i = 0; i < closeBtn.length; i++) {
+    closeBtn[i].addEventListener('click', function (){
+        console.log('close button');
+        modaleContainer.style.display = 'none';
+        modale2.style.display = 'none';
+    });
+}
 overlay.addEventListener('click', function (){
     console.log('overlay');
     modaleContainer.style.display = 'none';
@@ -150,7 +150,9 @@ for (let i = 0; i < works.length; i++) {
     
     tab[i] = document.createElement('a');
     tab[i].classList.add('trash');
-    tab[i].classList.add(`delete_btn_${i}`);
+    let id = works[i].id;
+    console.log(id);
+    tab[i].classList.add(`delete_btn_${id}`);
     tab[i].innerHTML = '<i class="fa-solid fa-trash-can fa-inverse fa-xl"></i>';
     figure.append(tab[i]);
 
@@ -166,28 +168,32 @@ for (let i = 0; i < works.length; i++) {
 
 const token = window.localStorage.getItem('token');
 console.log(token);
-const b = 'Bearer ';
-const tokenBearer = b + token;
-console.log(tokenBearer);
-
+const deleteBtn = document.querySelectorAll (`.trash`);
 for (let i = 0; i < works.length; i++) {
-    const deleteBtn = document.querySelector (`.delete_btn_${i}`);
+    let id = works[i].id;
     
-    deleteBtn.addEventListener('click', function(){
-        console.log(i);
-        fetch(`http://localhost:5678/api/works/${i}`, {
-            method:"DELETE",
-            headers:{
-                "Accept": "*/*",
-                "Authorization": `Bearer ${token}`,
-            },
+    deleteBtn[i].addEventListener('click', function(e){
+       e.preventDefault();
+        console.log(id); 
+       fetch(`http://localhost:5678/api/works/${id}`, {
+        method:"DELETE",
+        headers:{
+            "Accept": "*/*",
+            "Authorization": `Bearer ${token}`,
+        },
 
-            }).then(res => {
-                console.log(res.status);
-                
-            })
-    })
+        }).then(res => {
+            console.log(res.status);
+            
+        })
+})
 }
+
+
+
+   
+
+
 
 /* ______________________________________________________________ */
 
@@ -198,25 +204,33 @@ let urlImg = document.querySelector('.input_img').value;
 console.log(urlImg);
 let title = document.querySelector('.input_txt').value;
 let category = document.querySelector('select option').value;
+const form = document.querySelector('.modale_2 form');
 
-validBtn.addEventListener('click', async function(event){
-    console.log('valid btn');
+form.addEventListener('submit', function(event){
     event.preventDefault();
     
+    const formData = new FormData(form);
+    console.log(formData);
+    console.log(Array.from(formData));
+    const fd = Array.from(formData);
+    let data = [];
+    for(let i = 0; i < fd.length; i++){
+        console.log(fd[i][1]);
+        data[i] = fd[i][1];
+   }
     
-    let fd = new FormData();
-    fd.append('image', urlImg);
-    fd.append('Title', title);
-    fd.append('Catégorie', category);
+console.log(data);
+    // for(let obj of formData){
+    //     console.log(obj[1]);
+    // }
 
-    console.log(Array.from(fd));
 
-const r = await fetch('http://localhost:5678/api/works', {
+fetch('http://localhost:5678/api/works', {
 
     method: "POST",
-    body : fd,
+    body : data,
     headers: {
-        "Content-Type":"multipart/form-data",
+        "Content-Type":"mutltipart/form-data",
         "Accept":"application/json",
         "Authorization": `Bearer ${token}`,
     }
