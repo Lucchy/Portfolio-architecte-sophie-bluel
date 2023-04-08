@@ -54,10 +54,38 @@ body {
 	font-family: 'Work Sans';
 	font-size: 14px;
 }
-header {
+header .header {
 	display: flex;
 	justify-content: space-between;
 	margin: 50px 0;
+}
+
+.bande_noire {
+	width: 100%;
+	background-color: black;
+	display: none;
+	color: white;
+}
+
+.bande_noire .flex {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+.bande_noire i {
+	color: white;
+}
+
+.bande_noire button {
+	border-radius: 60px;
+	background-color: white;
+	color: black;
+	font-weight: 700;
+	padding: 10px; 
+	border: none;
+	margin: 10px 0;
 }
 
 section {
@@ -116,16 +144,6 @@ li:hover {
 	width: 100%;
 	height: 100%;
 	background: rgba(0, 0, 0, 0.3);
-}
-
-.bande_noire {
-	position: relative;
-	top: 0;
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	width: 100%;
-	background-color: black;
 }
 
 .modale {
@@ -274,9 +292,27 @@ li:hover {
 .modale_2 form .photo_area {
 	background-color: #E8F1F7;
 	height: 169px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 .modale_2 form .photo_area i{
 	color: #B9C5CC;
+}
+/* .modale_2 form .photo_area input {
+	display: none;
+} */
+
+.modale_2 form .photo_area button {
+	background-color: #B9C5CC;
+	color: #306685;
+	border: none;
+	padding: 10px 20px;
+	border-radius: 15px;
+	cursor: pointer;
+	font-weight: 700;
+	margin-bottom: 7px;
 }
 .modale_2 form label {
 	margin-top: 30px;

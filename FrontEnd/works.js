@@ -102,22 +102,27 @@ const overlay = document.querySelector('.overlay');
 const modale2 = document.querySelector('.modale_2');
 const addBtn = document.querySelector('.modale input');
 const arrow = document.querySelector('.back_btn');
+const bandeNoire = document.querySelector('.bande_noire');
+
 
 modaleBtn.addEventListener('click', function modale() {
     console.log('modale');
     modaleContainer.style.display = 'block';
+    bandeNoire.style.display = 'block';
 });
 for (let i = 0; i < closeBtn.length; i++) {
     closeBtn[i].addEventListener('click', function (){
         console.log('close button');
         modaleContainer.style.display = 'none';
         modale2.style.display = 'none';
+        bandeNoire.style.display = 'none';
     });
 }
 overlay.addEventListener('click', function (){
     console.log('overlay');
     modaleContainer.style.display = 'none';
     modale2.style.display = 'none';
+    bandeNoire.style.display = 'none';
 
 });
 
@@ -151,7 +156,6 @@ for (let i = 0; i < works.length; i++) {
     tab[i] = document.createElement('a');
     tab[i].classList.add('trash');
     let id = works[i].id;
-    console.log(id);
     tab[i].classList.add(`delete_btn_${id}`);
     tab[i].innerHTML = '<i class="fa-solid fa-trash-can fa-inverse fa-xl"></i>';
     figure.append(tab[i]);
@@ -190,12 +194,16 @@ for (let i = 0; i < works.length; i++) {
 }
 
 
-
-   
-
-
-
 /* ______________________________________________________________ */
+
+
+// upload d'un fichier 
+const addImg = document.querySelector('.modale_2 form .photo_area button');
+addImg.addEventListener('click', function(event){
+    event.preventDefault();
+    console.log('addImg');
+})
+
 
 // CREATION D'UN NOUVEAU PROJET
 
@@ -209,28 +217,17 @@ const form = document.querySelector('.modale_2 form');
 form.addEventListener('submit', function(event){
     event.preventDefault();
     
-    const formData = new FormData(form);
+const formData = new FormData()
+  formData.append('image', document.querySelector('.input_img').files[0], document.querySelector('.input_img').files[0].name)
+  formData.append('title', document.querySelector('input[name="title"]').value)
+  formData.append('category', document.querySelector('select[name="category"]').value)
     console.log(formData);
-    console.log(Array.from(formData));
-    const fd = Array.from(formData);
-    let data = [];
-    for(let i = 0; i < fd.length; i++){
-        console.log(fd[i][1]);
-        data[i] = fd[i][1];
-   }
-    
-console.log(data);
-    // for(let obj of formData){
-    //     console.log(obj[1]);
-    // }
-
 
 fetch('http://localhost:5678/api/works', {
 
     method: "POST",
-    body : data,
+    body : formData,
     headers: {
-        "Content-Type":"mutltipart/form-data",
         "Accept":"application/json",
         "Authorization": `Bearer ${token}`,
     }
@@ -240,39 +237,3 @@ fetch('http://localhost:5678/api/works', {
 })
 
 
-
-
-
-// function DeleteAllWorks() {
-//     for(let i = 0; i < works.length; i++) {
-//         fetch(`http://localhost:5678/api/works/${i}`, {
-//             method : "DELETE";
-//             header: {
-//                accept:'*/*'
-//}
-//         });
-//         console.log(`le projet numéro ${i} à été supprimé`);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
-//     }
-// } 
-
-
-
-// function sendNewProject() {
-// 
-//event.preventDefault();
-//     const newproject = {
-//         img : event.target.querySelector(),
-//         title : event.target.querySelector(),
-//         categorie : event.traget.querySelector() 
-//     }
-//     new_project = JSON.stringify(newProject);
-//     fetch('', {
-//         method: "POST",
-//         body: new_project,
-//         headers: {
-//             "Content-Type":"application/json",
-//             "Accept":"application/json",
-//             "Authorization": tokenBearer
-//             },
-//     })
-// }

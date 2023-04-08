@@ -16,11 +16,7 @@
 
 		
 		<div class="modale_container">
-			<!-- <div class="bande_noire">
-				<i class="fa-regular fa-pen-to-square"></i>
-				<p>Mode édition</p>
-				<button class="change">Publier les changements</button>
-			</div> -->
+			
 			<div class="overlay"></div>
 				<div class="modale">
 					<button class="close_btn"><i class="fa-solid fa-xmark fa-2x"></i></button>
@@ -39,13 +35,14 @@
 				<form>
 					<div class="photo_area">
 						<i class="fa-regular fa-image fa-2xl"></i> <br>
-						<input class="input_img" type="file" name="image" value="">+ Ajouter une photo</input>
+						<input class="input_img" type="file" name="image" accept="image/*"></input>
+						<button>+ Ajouter une photo</button>
 						<p>jng. png : 4mo max</p>
 					</div>
 					<label>Titre</label>
-					<input class ="input_txt" type="text" name="titre"></input>
+					<input class ="input_txt" type="text" name="title"></input>
 					<label>Catégorie</label>
-					<select name="categorie">
+					<select name="category">
 						<option value=""></option>
 						<option value="1">Objets</option>
 						<option value="2">Appartements</option>
@@ -61,15 +58,27 @@
 		</div>
 		
 		<header>
-			<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
-			<nav>
-				<ul>
-					<li>projets</li>
-					<li>contact</li>
-					<li>login</li>
-					<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
-				</ul>
-			</nav>
+			<div class="bande_noire">
+				<div class="flex">
+					<div class="flex"><i class="fa-regular fa-pen-to-square"></i>
+						<p>Mode édition</p>
+					</div>
+					<div class="flex">
+						<button class="change">Publier les changements</button>
+					</div>
+				</div>
+			</div>
+			<div class="header"><h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
+				<nav>
+					<ul>
+						<li>projets</li>
+						<li>contact</li>
+						<li>login</li>
+						<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
+					</ul>
+				</nav>
+			</div>
+			
 		</header>
 	<main>
 		<section id="introduction">
